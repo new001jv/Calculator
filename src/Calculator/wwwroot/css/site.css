@@ -41,6 +41,8 @@ html {
 	height: 250px;
 	width: 300px;
 	
+    position:relative;
+
 	float: right;
 	padding: 0 10px;
     margin-bottom: 20px;
@@ -56,6 +58,27 @@ html {
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 	text-align: right;
 	letter-spacing: 1px;
+}
+
+ .top .screen span {
+    position: absolute;
+    display:inline-block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right:5px;
+    right:0;
+ }
+
+  .top .screen span#top {
+    top: 0;
+    display: table-caption;
+    padding-left: 10px;
+}
+
+ .top .screen span#bottom {
+    bottom: 0;
+    display: table-caption;
+    padding-left: 10px;
 }
 
 /* Clear floats */

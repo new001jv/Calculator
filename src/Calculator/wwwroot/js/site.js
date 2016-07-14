@@ -61,3 +61,18 @@ $("#scientific").change(function () {
 $("#standard").change(function () {
     $("#scientificRegion").slideUp();
 });
+
+
+$("#graphing").change(function () {
+    functionPlot({
+        target: '#screen',
+        data: [{
+            fn: 'x^2',
+            derivative: {
+                fn: '2x',
+                updateOnMouseMove: true
+            }
+        }]
+    })
+});
+

@@ -1,6 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<head>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://maurizzzio.github.io/function-plot/js/function-plot.js"></script>
+</head>
+
+
 <div style="text-align: center">
     <h1>Best Calculator</h1>
 </div>
@@ -8,7 +14,11 @@
     <!-- Screen and clear key -->
     <div class="top">
         <!--<span class="clear">C</span>-->
-        <div class="screen"></div>
+        <div class="screen">
+            <span id="top">Text at top</span>
+            <span id="bottom">Text at bottom</span>
+        </div>
+        
     </div>
 
     <div class="keys">
