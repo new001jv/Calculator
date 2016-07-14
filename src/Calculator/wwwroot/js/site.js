@@ -3,27 +3,11 @@ var operators = ['+', '-', 'x', '÷'];
 var decimalAdded = false;
 for (var i = 0; i < keys.length; i++) {
     keys[i].onclick = function (e) {
-        var input = document.querySelector('.screen');
+        var input = document.querySelector('#top');
         var inputVal = input.innerHTML;
         var btnVal = this.innerHTML;
-        if (btnVal == 'Clear') {
-            input.innerHTML = '';
-            decimalAdded = false;
-        }
-        else if (btnVal == '=') {
-            var equation = inputVal;
-            var lastChar = equation[equation.length - 1];
-            equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
 
-            if (operators.indexOf(lastChar) > -1 || lastChar == '.')
-                equation = equation.replace(/.$/, '');
-
-            if (equation)
-                input.innerHTML = eval(equation);
-
-            decimalAdded = false;
-        }
-        else if (operators.indexOf(btnVal) > -1) {
+        if (operators.indexOf(btnVal) > -1) {
             var lastChar = inputVal[inputVal.length - 1];
 
             if (inputVal != '' && operators.indexOf(lastChar) == -1)
@@ -49,6 +33,66 @@ for (var i = 0; i < keys.length; i++) {
         else {
             input.innerHTML += btnVal;
         }
+
+        switch (btnVal) {
+            case "Clear":
+                input.innerHTML = '';
+                decimalAdded = false;
+                break;
+
+            case "sin":
+                input.innerHTML = Math.sin(inputVal);
+                break;
+
+            case "cos":
+                input.innerHTML = Math.cos(inputVal);
+                break;
+
+            case "tan":
+                input.innerHTML = Math.tan(inputVal);
+                break;
+
+            case "e":
+                input.innerHTML = Math.exp(inputVal);
+                break;
+
+            case "ln":
+                input.innerHTML = Math.log(inputVal);
+                break;
+
+            case "%":
+                input.innerHTML = inputVal / 100;
+                break;
+
+            case "sqrt":
+                input.innerHTML = Math.sqrt(inputVal);
+                break;
+
+            case "x^2":
+                input.innerHTML = Math.pow(inputVal,2);
+                break;
+
+            case "=":
+                var equation = inputVal;
+                var lastChar = equation[equation.length - 1];
+                equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
+
+                if (operators.indexOf(lastChar) > -1 || lastChar == '.')
+                    equation = equation.replace(/.$/, '');
+
+                if (equation)
+                    input.innerHTML = eval(equation);
+
+                decimalAdded = false;
+                break;
+
+            default:
+                //syntax error
+                break;
+
+            }
+
+
         e.preventDefault();
     };
 }
