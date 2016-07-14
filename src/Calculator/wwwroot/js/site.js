@@ -1,4 +1,5 @@
-﻿var keys = document.querySelectorAll('#calculator span');
+﻿
+var keys = document.querySelectorAll('#calculator span');
 var operators = ['+', '-', 'x', '÷'];
 var decimalAdded = false;
 for (var i = 0; i < keys.length; i++) {
@@ -64,7 +65,7 @@ $("#standard").change(function () {
 
 
 $("#graphing").change(function () {
-    functionPlot({
+   plot_instance =  functionPlot({
         target: '#screen',
         data: [{
             fn: 'x^2',
@@ -73,6 +74,9 @@ $("#graphing").change(function () {
                 updateOnMouseMove: true
             }
         }]
-    })
+   });
+   plot_instance.draw();
 });
+
+
 
