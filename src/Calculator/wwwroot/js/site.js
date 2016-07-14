@@ -14,7 +14,7 @@ for (var i = 0; i < keys.length; i++) {
 
         // Now, just append the key values (btnValue) to the input string and finally use javascript's eval function to get the result
         // If clear key is pressed, erase everything
-        if (btnVal == 'C') {
+        if (btnVal == 'Clear') {
             input.innerHTML = '';
             decimalAdded = false;
         }
@@ -84,3 +84,8 @@ for (var i = 0; i < keys.length; i++) {
         e.preventDefault();
     };
 }
+
+
+$("#scientific").change(function () {
+    alert("HI")
+});
