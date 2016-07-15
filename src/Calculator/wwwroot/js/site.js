@@ -5,8 +5,15 @@ var decimalAdded = false;
 for (var i = 0; i < keys.length; i++) {
     keys[i].onclick = function (e) {
         var input = document.querySelector('#top');
+        var bottomInput = document.querySelector('#bottom');
         var inputVal = input.innerHTML;
         var btnVal = this.innerHTML;
+
+        if (bottomInput.innerHTML != '') {
+            inputVal = bottomInput.innerHTML;
+            input.innerHTML = bottomInput.innerHTML;
+            bottomInput.innerHTML = '';
+        }
 
         if (operators.indexOf(btnVal) > -1) {
             var lastChar = inputVal[inputVal.length - 1];
@@ -32,12 +39,15 @@ for (var i = 0; i < keys.length; i++) {
         }
 
         else {
-            input.innerHTML += btnVal;
+            if (btnVal != '=') {
+                input.innerHTML += btnVal;        
+            }
         }
 
         switch (btnVal) {
             case "Clear":
                 input.innerHTML = '';
+                bottomInput.innerHTML = '';
                 decimalAdded = false;
                 if (isGraphing) {
                     $("#inputTxtBox").val("");
@@ -46,35 +56,43 @@ for (var i = 0; i < keys.length; i++) {
                 break;
 
             case "sin":
-                input.innerHTML = Math.sin(inputVal);
+                input.innerHTML = 'sin(' + inputVal + ')';
+                bottomInput.innerHTML = Math.sin(inputVal);
                 break;
 
             case "cos":
-                input.innerHTML = Math.cos(inputVal);
+                input.innerHTML = 'cos(' + inputVal + ')';
+                bottomInput.innerHTML = Math.cos(inputVal);
                 break;
 
             case "tan":
-                input.innerHTML = Math.tan(inputVal);
+                input.innerHTML = 'tan(' + inputVal + ')';
+                bottomInput.innerHTML = Math.tan(inputVal);
                 break;
 
             case "e":
-                input.innerHTML = Math.exp(inputVal);
+                input.innerHTML = 'e^' + inputVal;
+                bottomInput.innerHTML = Math.exp(inputVal);
                 break;
 
             case "ln":
-                input.innerHTML = Math.log(inputVal);
+                input.innerHTML = 'ln(' + inputVal + ')';
+                bottomInput.innerHTML = Math.log(inputVal);
                 break;
 
             case "%":
-                input.innerHTML = inputVal / 100;
+                input.innerHTML = inputVal + '%';
+                bottomInput.innerHTML = inputVal / 100;
                 break;
 
             case "sqrt":
-                input.innerHTML = Math.sqrt(inputVal);
+                input.innerHTML = '√' + inputVal;
+                bottomInput.innerHTML = Math.sqrt(inputVal);
                 break;
 
             case "x^2":
-                input.innerHTML = Math.pow(inputVal,2);
+                input.innerHTML = inputVal + '^2';
+                bottomInput.innerHTML = Math.pow(inputVal,2);
                 break;
 
             case "=":
@@ -86,10 +104,10 @@ for (var i = 0; i < keys.length; i++) {
                     equation = equation.replace(/.$/, '');
 
                 if (equation)
-                    input.innerHTML = eval(equation);
+                    bottomInput.innerHTML = eval(equation);
 
                 decimalAdded = false;
-                break;
+                //break;
 
             default:
                 //syntax error
