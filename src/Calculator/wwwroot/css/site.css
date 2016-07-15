@@ -206,3 +206,8 @@ span{
 user-select: none;
 }
 
+#graphingInput{
+    display: none;
+    padding-bottom: 8px;
+}
+

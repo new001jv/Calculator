@@ -39,6 +39,9 @@ for (var i = 0; i < keys.length; i++) {
             case "Clear":
                 input.innerHTML = '';
                 decimalAdded = false;
+                if (isGraphing) {
+                    $("#inputTxtBox").val("");
+                }
                 break;
 
             case "sin":
@@ -108,6 +111,8 @@ $("#scientific").change(function () {
         isGraphing = false;
         $('.function-plot').remove();
         $('#screen').css("background", "#263238");
+        $("#numberBtns").slideDown();
+        $("#graphingInput").slideUp();
     }
 
 
@@ -123,6 +128,8 @@ $("#standard").change(function () {
         isGraphing = false;
         $('.function-plot').remove();
         $('#screen').css("background", "#263238");
+        $("#numberBtns").slideDown();
+        $("#graphingInput").slideUp();
     }
 
     $("#scientificRegion").slideUp();
@@ -135,7 +142,20 @@ $("#graphing").change(function () {
     isGraphing = true;
     var functionPlot = window.functionPlot;
     $('#screen').css("background", "white");
+    $("#graphingInput").slideDown();
+    $("#numberBtns, #scientificRegion").slideUp();
+    Plot("0");
+});
 
+
+$("#graphingInput").keypress(function (event) {
+    if (event.which == 13) {
+       var input = $("#inputTxtBox").val() || 0;
+       Plot(input);
+    }
+});
+
+function Plot(input) {
     functionPlot({
         width: 300,
         height: 250,
@@ -146,15 +166,8 @@ $("#graphing").change(function () {
         },
         grid: true,
         data: [{
-            fn: 'x^2',
-            derivative: {
-                fn: '2 * x',
-                updateOnMouseMove: true
-            }
+            fn: input,
+
         }]
     });
-
-});
-
-
-
+};

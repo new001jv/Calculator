@@ -22,7 +22,7 @@
     </div>
 
     <div class="keys">
-        <div style="text-align: center">
+        <div id="radioButtons" style="text-align: center">
             <div class="btn-group" style="margin-bottom: 16px" data-toggle="buttons">
                 <label class="btn active btn-primary options">
                     <input type="radio" name="options" id="standard" autocomplete="off" checked> Standard
@@ -35,24 +35,26 @@
                 </label>
             </div>
         </div>
+
         <!-- operators and other keys -->
-        <span>7</span>
-        <span>8</span>
-        <span>9</span>
-        <span class="operator">+</span>
-        <span>4</span>
-        <span>5</span>
-        <span>6</span>
-        <span class="operator">-</span>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span class="operator">÷</span>
-        <span>0</span>
-        <span>.</span>
-        <span class="eval">=</span>
-        <span class="operator">x</span>
-       
+        <div id="numberBtns">
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span class="operator">+</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span class="operator">-</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span class="operator">÷</span>
+            <span>0</span>
+            <span>.</span>
+            <span class="eval">=</span>
+            <span class="operator">x</span>
+        </div>
     </div>
     <div class="keys" id="scientificRegion" style="display: none">
         <span class="operator scientificOperator">%</span>
@@ -65,10 +67,13 @@
         <span class="operator">ln</span>
         
     </div>
-    <div class="keys">
+    <div id="graphingInput">
+        <input type="text" id="inputTxtBox" class="form-control" />
+    </div>
+    <div id="clearBtn" class="keys">
         <span class="clear">Clear</span>
     </div>
-   
+    
 </div>
 <div id="bar">
 
