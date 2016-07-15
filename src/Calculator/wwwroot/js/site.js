@@ -99,27 +99,61 @@ for (var i = 0; i < keys.length; i++) {
 }
 
 
+var isGraphing = false;
+var isScientific = false;
+
 $("#scientific").change(function () {
+
+    if (isGraphing) {
+        isGraphing = false;
+        $('.function-plot').remove();
+        $('#screen').css("background", "#263238");
+    }
+
+
     $("#scientificRegion").slideDown();
+    
+ 
+
 });
 
 $("#standard").change(function () {
+    
+    if (isGraphing) {
+        isGraphing = false;
+        $('.function-plot').remove();
+        $('#screen').css("background", "#263238");
+    }
+
     $("#scientificRegion").slideUp();
 });
 
 
+
 $("#graphing").change(function () {
-   plot_instance =  functionPlot({
+
+    isGraphing = true;
+    var functionPlot = window.functionPlot;
+    $('#screen').css("background", "white");
+
+    functionPlot({
+        width: 300,
+        height: 250,
         target: '#screen',
+        yAxis: { domain: [-3, 3] },
+        tip: {
+            renderer: function () { }
+        },
+        grid: true,
         data: [{
             fn: 'x^2',
             derivative: {
-                fn: '2x',
+                fn: '2 * x',
                 updateOnMouseMove: true
             }
         }]
-   });
-   plot_instance.draw();
+    });
+
 });
 
 
