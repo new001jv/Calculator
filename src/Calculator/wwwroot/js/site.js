@@ -2,18 +2,17 @@
 var keys = document.querySelectorAll('#calculator span');
 var operators = ['+', '-', 'x', '÷'];
 var decimalAdded = false;
+
+
+
 for (var i = 0; i < keys.length; i++) {
     keys[i].onclick = function (e) {
         var input = document.querySelector('#top');
-        var bottomInput = document.querySelector('#bottom');
+        var result = document.querySelector('#bottom');
         var inputVal = input.innerHTML;
         var btnVal = this.innerHTML;
 
-        if (bottomInput.innerHTML != '') {
-            inputVal = bottomInput.innerHTML;
-            input.innerHTML = bottomInput.innerHTML;
-            bottomInput.innerHTML = '';
-        }
+      
 
         if (operators.indexOf(btnVal) > -1) {
             var lastChar = inputVal[inputVal.length - 1];
@@ -47,7 +46,6 @@ for (var i = 0; i < keys.length; i++) {
         switch (btnVal) {
             case "Clear":
                 input.innerHTML = '';
-                bottomInput.innerHTML = '';
                 decimalAdded = false;
                 if (isGraphing) {
                     $("#inputTxtBox").val("");
@@ -57,42 +55,58 @@ for (var i = 0; i < keys.length; i++) {
 
             case "sin":
                 input.innerHTML = 'sin(' + inputVal + ')';
-                bottomInput.innerHTML = Math.sin(inputVal);
+                result = Math.sin(inputVal);
+                displayHistory(input.innerHTML, result);
+                input.innerHTML = "";
                 break;
 
             case "cos":
                 input.innerHTML = 'cos(' + inputVal + ')';
-                bottomInput.innerHTML = Math.cos(inputVal);
+                result = Math.cos(inputVal);
+                displayHistory(input.innerHTML, result);
+                input.innerHTML = "";
                 break;
 
             case "tan":
                 input.innerHTML = 'tan(' + inputVal + ')';
-                bottomInput.innerHTML = Math.tan(inputVal);
+                result = Math.tan(inputVal);
+                displayHistory(input.innerHTML, result);
+                input.innerHTML = "";
                 break;
 
             case "e":
                 input.innerHTML = 'e^' + inputVal;
-                bottomInput.innerHTML = Math.exp(inputVal);
+                result = Math.exp(inputVal);
+                displayHistory(input.innerHTML, result);
+                input.innerHTML = "";
                 break;
 
             case "ln":
                 input.innerHTML = 'ln(' + inputVal + ')';
-                bottomInput.innerHTML = Math.log(inputVal);
+                result = Math.log(inputVal);
+                displayHistory(input.innerHTML, result);
+                input.innerHTML = "";
                 break;
 
             case "%":
                 input.innerHTML = inputVal + '%';
-                bottomInput.innerHTML = inputVal / 100;
+                result = inputVal / 100;
+                displayHistory(input.innerHTML, result);
+                input.innerHTML = "";
                 break;
 
             case "sqrt":
                 input.innerHTML = '√' + inputVal;
-                bottomInput.innerHTML = Math.sqrt(inputVal);
+                result = Math.sqrt(inputVal);
+                displayHistory(input.innerHTML, result);
+                input.innerHTML = "";
                 break;
 
             case "x^2":
                 input.innerHTML = inputVal + '^2';
-                bottomInput.innerHTML = Math.pow(inputVal,2);
+                result = Math.pow(inputVal, 2);
+                displayHistory(input.innerHTML, result);
+                input.innerHTML = "";
                 break;
 
             case "=":
@@ -103,9 +117,11 @@ for (var i = 0; i < keys.length; i++) {
                 if (operators.indexOf(lastChar) > -1 || lastChar == '.')
                     equation = equation.replace(/.$/, '');
 
-                if (equation)
-                    bottomInput.innerHTML = eval(equation);
-
+                if (equation) {
+                    result = eval(equation);
+                    input.innerHTML = "";
+                    displayHistory(equation, result);
+                }
                 decimalAdded = false;
                 //break;
 
@@ -113,12 +129,48 @@ for (var i = 0; i < keys.length; i++) {
                 //syntax error
                 break;
 
-            }
+        }
 
 
         e.preventDefault();
     };
 }
+
+
+function displayHistory(equation, result) {
+
+    var history = ["history_2", "history_3", "history_4", "history_5", "history_6",
+                "history_7"];
+
+    var currentEquation = equation;
+    var currentResult = result;
+
+    var prevEquation;
+    var prevResult;
+
+    for (var i = 0; i < history.length - 1;) {        //concatenate id
+        var id1 =  history[i + 1];
+        var id2 =  history[i];
+
+        //Geting the old values
+        prevEquation = document.getElementById(id1).innerHTML || " ";
+        prevResult = document.getElementById(id2).innerHTML || " ";
+
+        //set new values
+        document.getElementById(id1).innerHTML = " ";
+        document.getElementById(id2).innerHTML = " ";
+        document.getElementById(id1).innerHTML = currentEquation || "0";
+        document.getElementById(id2).innerHTML = currentResult || "0";
+
+        currentEquation = prevEquation;
+        currentResult = prevResult;
+
+        i += 2;
+
+    }
+};
+
+
 
 
 var isGraphing = false;
