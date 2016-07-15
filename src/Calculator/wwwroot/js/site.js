@@ -41,6 +41,7 @@ for (var i = 0; i < keys.length; i++) {
                 decimalAdded = false;
                 if (isGraphing) {
                     $("#inputTxtBox").val("");
+                    Plot("0");
                 }
                 break;
 
