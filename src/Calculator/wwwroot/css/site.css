@@ -17,13 +17,20 @@ html {
 	background: radial-gradient(circle, #fff 20%, #ccc);
 	background-size: cover;
 }
+body{
+     background: none;
+}
 
 /* Using box shadows to create 3D effects */
 #calculator {
 	width: 325px;
 	height: auto;
-	
-	margin: 100px auto;
+
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right:auto;
+    margin-bottom: 5em;
+
 	padding: 20px 20px 9px;
 	
 	background: #607D8B;

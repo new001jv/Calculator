@@ -115,12 +115,7 @@ $("#scientific").change(function () {
         $("#numberBtns").slideDown();
         $("#graphingInput").slideUp();
     }
-
-
     $("#scientificRegion").slideDown();
-    
- 
-
 });
 
 $("#standard").change(function () {
