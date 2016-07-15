@@ -2,6 +2,9 @@
 var keys = document.querySelectorAll('#calculator span');
 var operators = ['+', '-', 'x', '÷'];
 var decimalAdded = false;
+
+
+
 for (var i = 0; i < keys.length; i++) {
     keys[i].onclick = function (e) {
         var input = document.querySelector('#top');
@@ -79,15 +82,18 @@ for (var i = 0; i < keys.length; i++) {
 
             case "=":
                 var equation = inputVal;
+                var result;
                 var lastChar = equation[equation.length - 1];
                 equation = equation.replace(/x/g, '*').replace(/÷/g, '/');
 
                 if (operators.indexOf(lastChar) > -1 || lastChar == '.')
                     equation = equation.replace(/.$/, '');
 
-                if (equation)
-                    input.innerHTML = eval(equation);
-
+                if (equation) {
+                    result = eval(equation);
+                    input.innerHTML = "";
+                    displayHistory(equation, result);
+                }
                 decimalAdded = false;
                 break;
 
@@ -95,12 +101,48 @@ for (var i = 0; i < keys.length; i++) {
                 //syntax error
                 break;
 
-            }
+        }
 
 
         e.preventDefault();
     };
 }
+
+
+function displayHistory(equation, result) {
+
+    var history = ["history_2", "history_3", "history_4", "history_5", "history_6",
+                "history_7"];
+
+    var currentEquation = equation;
+    var currentResult = result;
+
+    var prevEquation;
+    var prevResult;
+
+    for (var i = 0; i < history.length - 1;) {        //concatenate id
+        var id1 =  history[i + 1];
+        var id2 =  history[i];
+
+        //Geting the old values
+        prevEquation = document.getElementById(id1).innerHTML || " ";
+        prevResult = document.getElementById(id2).innerHTML || " ";
+
+        //set new values
+        document.getElementById(id1).innerHTML = " ";
+        document.getElementById(id2).innerHTML = " ";
+        document.getElementById(id1).innerHTML = currentEquation || " ";
+        document.getElementById(id2).innerHTML = currentResult || " ";
+
+        currentEquation = prevEquation;
+        currentResult = prevResult;
+
+        i += 2;
+
+    }
+};
+
+
 
 
 var isGraphing = false;
@@ -172,3 +214,5 @@ function Plot(input) {
         }]
     });
 };
+
+

@@ -65,20 +65,62 @@ html {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right:5px;
-    right:0;
  }
 
-  .top .screen span#top {
-    top: 0;
+
+    .top .screen span#history_8 {
+    bottom: 210px;
+    display: table-caption;
+    padding-left: 10px;
+    right:0;
+
+}
+  .top .screen span#history_7 {
+    bottom: 180px;
     display: table-caption;
     padding-left: 10px;
 }
+  .top .screen span#history_6 {
+    bottom: 150px;
+    display: table-caption;
+    padding-left: 10px;
+    right:0;
 
- .top .screen span#bottom {
+}
+  .top .screen span#history_5 {
+    bottom: 120px;
+    display: table-caption;
+    padding-left: 10px;
+}
+  .top .screen span#history_4 {
+    bottom: 90px;
+    display: table-caption;
+    padding-left: 10px;
+    right:0;
+
+}
+  .top .screen span#history_3 {
+    bottom: 60px;
+    display: table-caption;
+    padding-left: 10px;
+    
+}
+.top .screen span#history_2 {
+    bottom: 30px;
+    display: table-caption;
+    padding-left: 10px;
+    right:0;
+
+}
+
+.top .screen span#top {
     bottom: 0;
     display: table-caption;
     padding-left: 10px;
+    right:0;
+
 }
+
 
 /* Clear floats */
 .keys, .top {overflow: hidden;}
