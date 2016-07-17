@@ -252,3 +252,12 @@ user-select: none;
     padding-bottom: 8px;
 }
 
+#developerOptions{
+    display: none;
+}
+
+.developerClass{
+    min-height: 500px;
+    overflow: hidden;
+}
+

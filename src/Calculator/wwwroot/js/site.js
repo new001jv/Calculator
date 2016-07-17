@@ -3,16 +3,12 @@ var keys = document.querySelectorAll('#calculator span');
 var operators = ['+', '-', 'x', '÷'];
 var decimalAdded = false;
 
-
-
 for (var i = 0; i < keys.length; i++) {
     keys[i].onclick = function (e) {
         var input = document.querySelector('#top');
         var result = document.querySelector('#bottom');
         var inputVal = input.innerHTML;
         var btnVal = this.innerHTML;
-
-      
 
         if (operators.indexOf(btnVal) > -1) {
             var lastChar = inputVal[inputVal.length - 1];
@@ -130,8 +126,6 @@ for (var i = 0; i < keys.length; i++) {
                 break;
 
         }
-
-
         e.preventDefault();
     };
 }
@@ -170,47 +164,86 @@ function displayHistory(equation, result) {
     }
 };
 
-
-
-
+var isStandard = true;
 var isGraphing = false;
 var isScientific = false;
+var isDeveloper = false;
+
+function TransformCalculator(input) {
+    switch (input) {
+        case "standard":
+            isStandard = true;
+            if (isGraphing) {
+                isGraphing = false;
+                $('.function-plot').remove();
+                $('#screen').css("background", "#263238");
+                $("#numberBtns").slideDown();
+                $("#graphingInput").slideUp();
+            }
+            if (isDeveloper) {
+                isDeveloper = false;
+                $("#numberBtns, #screen, #clearBtn").slideDown();
+                $("#developerOptions").slideUp();
+                $("#calculator").removeClass("developerClass");
+            }
+            $("#scientificRegion").slideUp();
+            break;
+        case "scientific":
+            isScientific = true;
+            if (isGraphing) {
+                isGraphing = false;
+                $('.function-plot').remove();
+                $('#screen').css("background", "#263238");
+                $("#numberBtns").slideDown();
+                $("#graphingInput").slideUp();
+            }
+            if (isDeveloper) {
+                isDeveloper = false;
+                $("#numberBtns, #screen, #clearBtn").slideDown();
+                $("#developerOptions").slideUp();
+                $("#calculator").removeClass("developerClass");
+            }
+            $("#scientificRegion").slideDown();
+            break;
+        case "graphing":
+            isGraphing = true;
+            if (isDeveloper) {
+                isDeveloper = false;
+                $("#screen, #clearBtn").slideDown();
+                $("#developerOptions").slideUp();
+            }
+            $('#screen').css("background", "white");
+            $("#graphingInput").slideDown();
+            $("#numberBtns, #scientificRegion").slideUp();
+            break;
+        case "developer":
+            isDeveloper = true;
+            $("#scientificRegion, #numberBtns, #screen, #clearBtn").slideUp();
+            $("#calculator").addClass("developerClass");
+            $("#developerOptions").slideDown();
+            break;
+    }
+
+};
 
 $("#scientific").change(function () {
-
-    if (isGraphing) {
-        isGraphing = false;
-        $('.function-plot').remove();
-        $('#screen').css("background", "#263238");
-        $("#numberBtns").slideDown();
-        $("#graphingInput").slideUp();
-    }
-    $("#scientificRegion").slideDown();
+    TransformCalculator("scientific");
+    
 });
 
 $("#standard").change(function () {
-    
-    if (isGraphing) {
-        isGraphing = false;
-        $('.function-plot').remove();
-        $('#screen').css("background", "#263238");
-        $("#numberBtns").slideDown();
-        $("#graphingInput").slideUp();
-    }
-
-    $("#scientificRegion").slideUp();
+    TransformCalculator("standard");
+  
 });
 
-
-
 $("#graphing").change(function () {
-
-    isGraphing = true;
+    TransformCalculator("graphing");
     var functionPlot = window.functionPlot;
-    $('#screen').css("background", "white");
-    $("#graphingInput").slideDown();
-    $("#numberBtns, #scientificRegion").slideUp();
     Plot("0");
+});
+
+$("#developer").change(function () {
+    TransformCalculator("developer");
 });
 
 
@@ -233,10 +266,10 @@ function Plot(input) {
         grid: true,
         data: [{
             fn: input,
-
         }]
     });
 };
+
 
 $(function () {
     $("#slider-range-max").slider({
