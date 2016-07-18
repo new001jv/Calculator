@@ -242,6 +242,7 @@ $("#standard").change(function () {
 });
 
 $("#graphing").change(function () {
+    deleteHistory();
     TransformCalculator("graphing");
     var functionPlot = window.functionPlot;
     Plot("0");
@@ -288,3 +289,16 @@ $(function () {
     });
     $("#amount").text($("#slider-range-max").slider("value"));
 });
+
+
+
+function deleteHistory() {
+
+    var history = ["top","history_2", "history_3", "history_4", "history_5", "history_6",
+               "history_7"];
+
+
+    for (i in history) {
+        document.getElementById(history[i]).innerHTML = " ";
+    }
+};
