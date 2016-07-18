@@ -193,6 +193,8 @@ function TransformCalculator(input) {
             }
             if (isDeveloper) {
                 isDeveloper = false;
+                $('.function-plot').remove();
+                $('#screen').css("background", "#263238");
                 $("#numberBtns, #screen, #clearBtn").slideDown();
                 $("#developerOptions").slideUp();
                 $("#calculator").removeClass("developerClass");
@@ -209,6 +211,13 @@ function TransformCalculator(input) {
                 $("#graphingInput").slideUp();
             }
             if (isDeveloper) {
+                if (isGraphing) {
+                    isGraphing = false;
+                    $('.function-plot').remove();
+                    $('#screen').css("background", "#263238");
+                    $("#numberBtns").slideDown();
+                    $("#graphingInput").slideUp();
+                }
                 isDeveloper = false;
                 $("#numberBtns, #screen, #clearBtn").slideDown();
                 $("#developerOptions").slideUp();
