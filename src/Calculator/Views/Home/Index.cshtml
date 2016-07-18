@@ -82,21 +82,19 @@
         <div class="row">
             <div style="padding-top: 14px;">
                 <div class="col-sm-7">
-                    <input class="form-control" />
+                    <input id="developerInput" class="form-control" />
                 </div>
                 <div class="col-sm-5">
-                    <div class="btn-group" style="margin-bottom: 16px" data-toggle="buttons">
-                        <label class="btn btn-primary options">
-                            <input type="radio" name="options" id="emRadio" autocomplete="off"> EM
-                        </label>
-                        <label class="btn btn-primary options">
-                            <input type="radio" name="options" id="pxRadio" autocomplete="off"> PX
-                        </label>
+                    <div class="pull-right">
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button id="emBtn" type="button" class="btn btn-default">EM</button>
+                            <button id="pxBtn" type="button" class="btn btn-default">PX</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+        <h1 style="text-align: center;" id="developerAns"></h1>
     </div>
 </div>
 

@@ -313,3 +313,17 @@ function deleteHistory() {
         document.getElementById(history[i]).innerHTML = " ";
     }
 };
+
+$("#emBtn").click(function () {
+    var defaultPxSize = $("#slider-range-max").slider("value");
+    var numberEntered = $("#developerInput").val() || 0;
+    var equation = numberEntered / defaultPxSize;
+    $("#developerAns").text(equation.toFixed(4));
+});
+
+$("#pxBtn").click(function () {
+    var defaultPxSize = $("#slider-range-max").slider("value");
+    var numberEntered = $("#developerInput").val() || 0;
+    var equation = numberEntered * defaultPxSize;
+    $("#developerAns").text(equation.toFixed(4));
+});
