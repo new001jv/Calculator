@@ -269,7 +269,10 @@ $("#graphingInput").keypress(function (event) {
 });
 
 $(document).keypress(function (e) {
-    console.log(e.keyCode);
+    if (e.keyCode >= 49 && e.keyCode <= 57) {
+        $("#top").append(e.key);
+    }
+    console.log(e.keyCode, e.key);
 });
 
 function Plot(input) {
