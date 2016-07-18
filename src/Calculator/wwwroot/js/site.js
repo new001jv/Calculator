@@ -221,6 +221,11 @@ function TransformCalculator(input) {
             $("#scientificRegion, #numberBtns, #screen, #clearBtn").slideUp();
             $("#calculator").addClass("developerClass");
             $("#developerOptions").slideDown();
+            if (isGraphing) {
+                isGraphing = false;
+                $("#graphingInput").slideUp();
+            }
+
             break;
     }
 
