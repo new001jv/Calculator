@@ -261,3 +261,7 @@ user-select: none;
     overflow: hidden;
 }
 
+#colorBtn{
+    margin-top: 14px;
+}
+

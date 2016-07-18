@@ -315,12 +315,33 @@ $("#emBtn").click(function () {
     var defaultPxSize = $("#slider-range-max").slider("value");
     var numberEntered = $("#developerInput").val() || 0;
     var equation = numberEntered / defaultPxSize;
-    $("#developerAns").text(equation.toFixed(4));
+    $("#developerAns").text(equation.toFixed(4) + ' em');
 });
 
 $("#pxBtn").click(function () {
     var defaultPxSize = $("#slider-range-max").slider("value");
     var numberEntered = $("#developerInput").val() || 0;
     var equation = numberEntered * defaultPxSize;
-    $("#developerAns").text(equation.toFixed(4));
+    $("#developerAns").text(equation.toFixed(4) + ' px');
 });
+
+$("#colorBtn").click(function () {
+    var redValue = parseInt($("#redInput").val() || 0);
+    var greenValue = parseInt($("#greenInput").val() || 0);
+    var blueValue = parseInt($("#blueInput").val() || 0);
+    if (redValue <= 255 && redValue >= 0 && greenValue <= 255 && greenValue >= 0 && blueValue <= 255 && blueValue >= 0) {
+        $("#colorAns").text("#" + numConversion(redValue) + numConversion(greenValue) + numConversion(blueValue));
+    }
+    else {
+        alert("Error: Enter a number between 0 and 255.");
+    }
+});
+
+function numConversion(number) {
+    if (number <= 15) {
+        return '0' + number.toString(16);
+    }
+    else {
+        return number.toString(16);
+    }
+}
