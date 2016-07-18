@@ -279,12 +279,12 @@ function Plot(input) {
 $(function () {
     $("#slider-range-max").slider({
         range: "max",
-        min: 1,
-        max: 10,
-        value: 2,
+        min: 8,
+        max: 24,
+        value: 16,
         slide: function (event, ui) {
-            $("#amount").val(ui.value);
+            $("#amount").text(ui.value);
         }
     });
-    $("#amount").val($("#slider-range-max").slider("value"));
+    $("#amount").text($("#slider-range-max").slider("value"));
 });
