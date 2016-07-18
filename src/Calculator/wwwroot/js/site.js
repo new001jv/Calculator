@@ -268,6 +268,10 @@ $("#graphingInput").keypress(function (event) {
     }
 });
 
+$(document).keypress(function (e) {
+    console.log(e.keyCode);
+});
+
 function Plot(input) {
     functionPlot({
         width: 300,
