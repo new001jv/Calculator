@@ -239,17 +239,14 @@ function TransformCalculator(input) {
 
             break;
     }
-
 };
 
 $("#scientific").change(function () {
     TransformCalculator("scientific");
-    
 });
 
 $("#standard").change(function () {
     TransformCalculator("standard");
-  
 });
 
 $("#graphing").change(function () {
